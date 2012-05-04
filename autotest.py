@@ -110,7 +110,6 @@ class Autotest(unittest2.TestCase):
         """
         #make user eval using POST
         #look for develper tools (use google chrome or new firefox)
-        self.conn = httplib.HTTPConnection("inphodev.cogs.indiana.edu:8087")
         self.conn.request("POST", "/idea/1488/relatedness/1793")
         r_result = self.conn.getresponse()
         self.conn.request("POST", "/idea/1488/generality/1793")
@@ -124,7 +123,6 @@ class Autotest(unittest2.TestCase):
         Verify evaluation submissions append to database
         """
         #being able to delete user eval
-        self.conn = httplib.HTTPConnection("inphodev.cogs.indiana.edu:8087")
         self.conn.request("GET", "/idea/1488/relatedness/1793?_method=DELETE")
         r_result = self.conn.getresponse()
         self.conn.request("GET", "/idea/1488/generality/1793?_method=DELETE")
