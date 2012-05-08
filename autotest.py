@@ -4,6 +4,8 @@ import inpho.corpus.sep as sep
 from inpho.model import *
 import sqlalchemy
 
+__all__ = ["Autotest"]
+
 class Autotest(unittest2.TestCase):
     def getPassedTests(self):
         return passed
@@ -20,12 +22,12 @@ class Autotest(unittest2.TestCase):
         self.conn = httplib.HTTPConnection("plato.stanford.edu")
         self.conn.request("GET", "/~inpho/crossref.php")
         result = self.conn.getresponse()
-        self.assertLessEqual(result.status, 400)
+        self.assertLessEqual(result.status, 200)
 
     def test_entity_json(self):
         """
         Entity JSON
-        Verify that https://inpho.cogs.indiana.edu/entity.json returns HTTP 400
+        Verify that https://inpho.cogs.indiana.edu/entity.json returns HTTP 200
         """
         self.conn.request("GET", "/entity")
         result = self.conn.getresponse()
@@ -34,7 +36,7 @@ class Autotest(unittest2.TestCase):
     def test_idea_json(self):
         """
         Idea JSON
-        Verify that https://inpho.cogs.indiana.edu/idea.json returns HTTP 400
+        Verify that https://inpho.cogs.indiana.edu/idea.json returns HTTP 200
         """
         self.conn.request("GET", "/idea")
         result = self.conn.getresponse()
@@ -43,7 +45,7 @@ class Autotest(unittest2.TestCase):
     def test_thinker_json(self):
         """
         Thinker JSON
-        Verify that https://inpho.cogs.indiana.edu/thinker.json returns HTTP 400
+        Verify that https://inpho.cogs.indiana.edu/thinker.json returns HTTP 200
         """
         self.conn.request("GET", "/thinker")
         result = self.conn.getresponse()
@@ -52,7 +54,7 @@ class Autotest(unittest2.TestCase):
     def test_journal_json(self):
         """
         Journal JSON
-        Verify that https://inpho.cogs.indiana.edu/journal.json returns HTTP 400
+        Verify that https://inpho.cogs.indiana.edu/journal.json returns HTTP 200
         """
         self.conn.request("GET", "/journal")
         result = self.conn.getresponse()
@@ -61,7 +63,7 @@ class Autotest(unittest2.TestCase):
     def test_taxonomy_json(self):
         """
         Taxonomy JSON
-        Verify that https://inpho.cogs.indiana.edu/taxonomy.json returns HTTP 400
+        Verify that https://inpho.cogs.indiana.edu/taxonomy.json returns HTTP 200
         """
         self.conn.request("GET", "/taxonomy")
         result = self.conn.getresponse()
@@ -89,7 +91,7 @@ class Autotest(unittest2.TestCase):
         thinker_q = Session.query(Thinker)
         profession_q = Session.query(Profession)
         nationality_q = Session.query(Nationality)
-
+        
         nodes = node_q.all()
         thinkers = thinker_q.all()
         professions = profession_q.all()
