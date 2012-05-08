@@ -6,9 +6,18 @@ line:
 $ python autotest.py
 
 This will run each of the methods that begin with "test" and print
-out whether they passed or failed their designated check. In
-addition, it will build a list that contains the test cases that
-passed that can be used to set the check boxes in tests.html
+out whether they passed or failed their designated check.
 
 More information about the unittest2 library can be found at
 http://docs.python.org/library/unittest.html.
+
+
+results.py is a testing file that runs each test in Autotest
+individually and prints out PASSED/FAILED and each test's doc string.
+like the autotest.py file, result.py can be run on the command line
+the same way with:
+
+$ python results.py
+
+This file shows how access all the information necessary for the 
+tests to be used to automatically set the checkboxes in tests.py
